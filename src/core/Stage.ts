@@ -28,6 +28,7 @@ export class Stage {
   mode = "output";
   private cFrame = 0;
   private alreadySetup: boolean;
+  startedAt: Date;
 
   get frame(): number {
     return this.cFrame;
@@ -127,6 +128,7 @@ export class Stage {
         f++;
       }
     } else if (this.output) {
+      this.startedAt = new Date();
       let ffmpeg = createFFmpeg({
         log: true,
         corePath: "/ffmpeg-core.js",
@@ -166,7 +168,13 @@ export class Stage {
           });
         })
           // tslint:disable-next-line:no-console
-          .then(() => console.log("finished!"));
+          .then(() => {
+            const endedAt = new Date();
+            console.log(this.startedAt, endedAt);
+            let duration = endedAt.getTime() - this.startedAt.getTime();
+            console.log(`duration: ${duration} ms`);
+            console.log("finished!");
+          });
       });
     } else {
       this.interval = interval((elapsed) => {

@@ -29,7 +29,7 @@
     "dev": "webpack  --config webpack.dev.js",
     "watch": "webpack --watch  --config webpack.dev.js",
     "prepublish": "yarn build",
-    "test-node": "ts-node ./test/index_for_node.ts",
+    "test-node": "ts-node ./test/index.ts",
     "git-patch": "git checkout --patch master ./src"
   },
   "devDependencies": {
