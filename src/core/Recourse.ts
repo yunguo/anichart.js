@@ -66,9 +66,7 @@ export class Recourse {
     if (typeof path !== "string") {
       path = path.default;
     }
-    const promise = json(path);
-    this.dataPromise.set(name, promise);
-    return promise;
+    this.data.set(name, path);
   }
 }
 export const recourse = new Recourse();
